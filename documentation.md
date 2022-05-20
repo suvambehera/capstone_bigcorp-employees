@@ -466,7 +466,7 @@ Q16. Performance rating distribution
     d. Use SparkSQL to perform EDA of the same business problems.
     e. Perform proper visualisation.
     
-Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/4f8c8c0e1b5269fc2da8c8ba0b56d7aa56f4a051/SparkSQL/Capstone1_SparkSQL.ipynb)
+Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkSQL/Capstone1_SparkSQL.ipynb)
     
 5. SparkML Model building
     a. Import all the required libraries in Jupyter Labs
@@ -477,5 +477,7 @@ Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-e
     f. Slit the dataset into train and test set.
     g. Perform Logistic Regression and Random Forest Classifier.
     h. Compare the result.
+    
+Please refer to [SparkML Model](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkML/capstone1_SparkML.ipynb)
     
 
