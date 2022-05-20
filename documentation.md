@@ -222,61 +222,61 @@ dept no - Unique id for each department character - Not Null
    --location "/user/anabig114238/hive/warehouse/dept_emp"
    --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_emp.avsc');
 
-   --CREATE EXTERNAL TABLE dept_manager
-   --ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   --STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   --OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   --location "/user/anabig114238/hive/warehouse/dept_manager"
-   --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_manager.avsc');
+   -- CREATE EXTERNAL TABLE dept_manager
+   -- ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   -- STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   -- OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   -- location "/user/anabig114238/hive/warehouse/dept_manager"
+   -- TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_manager.avsc');
 
    --<!-- check the database for tables -->
-   --show tables;
+   -- show tables;
 
    --<!-- check the talbes for data -->
-   --select * from departments;
+   -- select * from departments;
 
-   --select * from employees;
+   -- select * from employees;
 
-   --select * from titles;
+   -- select * from titles;
 
-   --select * from dept_emp;
+   -- select * from dept_emp;
 
-   --select * from dept_manager;
+   -- select * from dept_manager;
 
-   --select * from salaries;
+   -- select * from salaries;
    
     c. Create views from the tables for specified purposes.
     
-   --CREATE VIEW employeesorg AS
+   -- CREATE VIEW employeesorg AS
    --    SELECT emp_no,                                                      
-   --emp_title,                                                                       
-   --birth_date,                                                                       
-   --first_name,                                                                        
-   --last_name,                                                                        
-   --sex,                                                                            
-   --hire_date,                                                                            
-   --no_of_projects,                                                                          
-   --last_performance_rating,                                                                         
-   --last_date, left_org
-   --FROM(
+   -- emp_title,                                                                       
+   -- birth_date,                                                                       
+   -- first_name,                                                                        
+   -- last_name,                                                                        
+   -- sex,                                                                            
+   -- hire_date,                                                                            
+   -- no_of_projects,                                                                          
+   -- last_performance_rating,                                                                         
+   -- last_date, left_org
+   -- FROM(
    --    SELECT emp_no,                                                      
-   --emp_title,                                                                       
-   --birth_date,                                                                       
-   --first_name,                                                                        
-   --last_name,                                                                        
-   --sex,                                                                            
-   --hire_date,                                                                            
-   --no_of_projects,                                                                          
-   --last_performance_rating,                                                                         
-   --last_date,
+   -- emp_title,                                                                       
+   -- birth_date,                                                                       
+   -- first_name,                                                                        
+   -- last_name,                                                                        
+   -- sex,                                                                            
+   -- hire_date,                                                                            
+   -- no_of_projects,                                                                          
+   -- last_performance_rating,                                                                         
+   -- last_date,
    --        CASE WHEN LENGTH(last_date) > 8 THEN '1' 
    --            WHEN LENGTH(last_date) > 0 THEN '0'
    --        END AS left_org
-   --FROM employees)t1;
+   -- FROM employees)t1;
    
    --<!-- Salary bins view -->
-   --CREATE view BINS as
-   --SELECT
+   -- CREATE view BINS as
+   -- SELECT
    --    CASE 
    --        WHEN s.salary >= 40000 and s.salary < 50000 THEN '40k-50k'
    --        WHEN s.salary >= 50000 and s.salary <60000 THEN '50k-60k'
@@ -289,13 +289,13 @@ dept no - Unique id for each department character - Not Null
    --        WHEN s.salary >= 120000 and s.salary < 130000 THEN '120k-130k'
    --        ELSE 'NA'
    --        END AS Bins
-   --FROM employeesorg e
-   --JOIN salaries s
-   --ON s.emp_no = e.emp_no;
+   -- FROM employeesorg e
+   -- JOIN salaries s
+   -- ON s.emp_no = e.emp_no;
    
    --<!-- View for Tenure distribution -->
-   --CREATE VIEW employees_tenure AS
-   --SELECT
+   -- CREATE VIEW employees_tenure AS
+   -- SELECT
    --    emp_no,
    --    first_name,
    --    last_name,
@@ -304,7 +304,7 @@ dept no - Unique id for each department character - Not Null
    --    left_org,
    --    last_date,
    --    CAST(SUBSTR(last_date, -5, 4) AS INT) AS left_year
-   --FROM employeesorg;
+   -- FROM employeesorg;
 
 4. Impala and SparkSQL EDA
     a. Invalidate Metadata to reload the fresh metadata for Impala query.
