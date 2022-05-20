@@ -120,7 +120,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
            dept_no varchar(20) NOT NULL,
            emp_no int NOT NULL); 
            
-          ```
+       ```
     
    3) Upload the data into the HDFS FTP
     
