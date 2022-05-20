@@ -37,19 +37,19 @@ The physical model is of this denormalised database is a Star Schema with a key-
    left-Employee left the organization - Boolean-Not Null \
    Last date - Last date of employment (Exit Date) - Date Time
 
-c. Salaries (salaries.csv): \
+- Salaries (salaries.csv): \
    emp no- Employee id- Integer - Not Null Salary \
    Employee's Salary-Integer - Not Null
 
-d. Departments (departments.csv): \
+- Departments (departments.csv): \
    dept no-Unique id for each department - character - Not Null \
    dept_name-Department Name-Character - Not Null
 
-e. Department Managers (dept_manager.csv): \
+- Department Managers (dept_manager.csv): \
    dept no - Unique id for each department-character - Not Null \
    emp_no-Employee number (head of the department )- Integer - Not Null
 
-f. Department Employees (dept_emp.csv): \
+- Department Employees (dept_emp.csv): \
    emp no-Employee id - Integer - Not Null \
    dept no - Unique id for each department character - Not Null
 
@@ -73,89 +73,89 @@ f. Department Employees (dept_emp.csv): \
 
 ## Architecture of Pipeline (Stages)
 
-1. Database creation: \
-    a. Connecting to Linux terminal to access MySQL server for database creation.
+- Database creation: \
+    a. Connecting to Linux terminal to access MySQL server for database creation.\
+       ```
+           mysql -u username -p 
+       ```
+    b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.\
     
-    ``` mysql -u username -p ```
-    
-    b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.
-    
- ``` create database anabig114211; 
-     use anabig114211; 
-    
-    
-     create table titles(
-     title_id varchar(10) PRIMARY KEY NOT NULL,
-     title varchar(30) NOT NULL);
+       ``` create database anabig114211; 
+           use anabig114211; 
 
-     create table employees(
-     emp_no int PRIMARY KEY NOT NULL,
-     emp_title_id varchar(10) NOT NULL,
-     birth_date varchar(10) NOT NULL,
-     first_name varchar(20) NOT NULL,
-     last_name varchar(20) NOT NULL,
-     sex varchar(5) NOT NULL,
-     hire_date varchar(10) NOT NULL,
-     no_of_projects int NOT NULL,
-     last_performance_rating varchar(10) NOT NULL,
-     left_org int NOT NULL,
-     last_date varchar(10)); 
 
-   <!-- make sure not to name any tables with MySQL reserved keywords -->
+           create table titles(
+           title_id varchar(10) PRIMARY KEY NOT NULL,
+           title varchar(30) NOT NULL);
 
-     create table salaries(
-     emp_no int NOT NULL,
-     salary bigint NOT NULL);
+           create table employees(
+           emp_no int PRIMARY KEY NOT NULL,
+           emp_title_id varchar(10) NOT NULL,
+           birth_date varchar(10) NOT NULL,
+           first_name varchar(20) NOT NULL,
+           last_name varchar(20) NOT NULL,
+           sex varchar(5) NOT NULL,
+           hire_date varchar(10) NOT NULL,
+           no_of_projects int NOT NULL,
+           last_performance_rating varchar(10) NOT NULL,
+           left_org int NOT NULL,
+           last_date varchar(10)); 
+      ```
+         <!-- make sure not to name any tables with MySQL reserved keywords -->
 
-     create table departments(
-     dept_no varchar(20) PRIMARY KEY NOT NULL ,
-     dept_name varchar(30) NOT NULL);
+           create table salaries(
+           emp_no int NOT NULL,
+           salary bigint NOT NULL);
 
-     CREATE TABLE dept_emp(
-     emp_no int NOT NULL,
-     dept_no varchar(20) NOT NULL); 
+           create table departments(
+           dept_no varchar(20) PRIMARY KEY NOT NULL ,
+           dept_name varchar(30) NOT NULL);
 
-     create table Department_Managers_jes(
-     dept_no varchar(20) NOT NULL,
-     emp_no int NOT NULL); ```
+           CREATE TABLE dept_emp(
+           emp_no int NOT NULL,
+           dept_no varchar(20) NOT NULL); 
+
+           create table Department_Managers_jes(
+           dept_no varchar(20) NOT NULL,
+           emp_no int NOT NULL); ```
     
     c. Upload the data into the HDFS FTP
     
-    ``` /home/anabig114211/capstonelv1_empdata ```
+       ``` /home/anabig114211/capstonelv1_empdata ```
     
     d. Data Ingestion - Load the data into the table using appropriate delimiter.
     
-  ``` load data local infile '/home/anabig114211/titles.csv' into table titles
-      fields terminated by ','
-      ignore 1 rows;
+        ``` load data local infile '/home/anabig114211/titles.csv' into table titles
+            fields terminated by ','
+            ignore 1 rows;
 
-      load data local infile '/home/anabig114211/employees.csv' into table employees
-      fields terminated by ','
-      ignore 1 rows;
+            load data local infile '/home/anabig114211/employees.csv' into table employees
+            fields terminated by ','
+            ignore 1 rows;
 
-      load data local infile '/home/anabig114211/salaries.csv' into table salaries
-      fields terminated by ','
-      ignore 1 rows;
+            load data local infile '/home/anabig114211/salaries.csv' into table salaries
+            fields terminated by ','
+            ignore 1 rows;
 
-      load data local infile '/home/anabig114211/departments.csv' into table departments
-      fields terminated by ','
-      ignore 1 rows;
+            load data local infile '/home/anabig114211/departments.csv' into table departments
+            fields terminated by ','
+            ignore 1 rows;
 
-      load data local infile '/home/anabig114211/dept_emp.csv' into table dept_emp
-      fields terminated by ','
-      ignore 1 rows;
+            load data local infile '/home/anabig114211/dept_emp.csv' into table dept_emp
+            fields terminated by ','
+            ignore 1 rows;
 
-      load data local infile '/home/anabig114211/dept_manager.csv' into table dept_manager
-      fields terminated by ','
-      ignore 1 rows; ```
+            load data local infile '/home/anabig114211/dept_manager.csv' into table dept_manager
+            fields terminated by ','
+            ignore 1 rows; ```
    
 2. Data and Schema transfer to HDFS and Hive
     a. Select a compressed file format (AVRO) for the data to be transferred.
     b. Use Sqoop command to transfer all table data to a specified location into HDFS directory.
     
-  ``` sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
-     --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
-     --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver ```
+        ``` sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
+           --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
+           --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver ```
       
     c. In Linux shell, transfer the .avsc schema file to another specified HDFS directory.
     
