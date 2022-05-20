@@ -126,7 +126,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
     
        ``` /home/anabig114211/capstonelv1_empdata ```
     
-    d. Data Ingestion - Load the data into the table using appropriate delimiter.
+   4) Data Ingestion - Load the data into the table using appropriate delimiter.
     
         ``` load data local infile '/home/anabig114211/titles.csv' into table titles
             fields terminated by ','
@@ -153,167 +153,171 @@ The physical model is of this denormalised database is a Star Schema with a key-
             ignore 1 rows; ```
    
 2. Data and Schema transfer to HDFS and Hive
-    a. Select a compressed file format (AVRO) for the data to be transferred.
-    b. Use Sqoop command to transfer all table data to a specified location into HDFS directory.
+    1) Select a compressed file format (AVRO) for the data to be transferred.
+    2) Use Sqoop command to transfer all table data to a specified location into HDFS directory.
     
         ``` sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
            --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
            --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver ```
       
-    c. In Linux shell, transfer the .avsc schema file to another specified HDFS directory.
-    
-    - <!-- check if all files were imported successfully from the Sqoop tranfer -->
-    - <!-- avsc schema files in linux home -->
-    - ls -l /home/anabig114211/*.avsc
+    3) In Linux shell, transfer the .avsc schema file to another specified HDFS directory.
+      ```
+           <!-- check if all files were imported successfully from the Sqoop tranfer -->
+           <!-- avsc schema files in linux home -->
+           ls -l /home/anabig114211/*.avsc
 
-    - <!-- create a directory dedicated to the project in HDFS -->
-    - hdfs dfs -mkdir /user/anabig114211/caplvl1_avsc
+           <!-- create a directory dedicated to the project in HDFS -->
+           hdfs dfs -mkdir /user/anabig114211/caplvl1_avsc
 
-    - <!-- transfer all the avro schema data files from the Linux to HDFS using the -put command -->
-    - hdfs dfs -put /home/anabig114211/titles.avsc /user/anabig114211/caplvl1_avsc/titles.avsc
+           <!-- transfer all the avro schema data files from the Linux to HDFS using the -put command -->
+           hdfs dfs -put /home/anabig114211/titles.avsc /user/anabig114211/caplvl1_avsc/titles.avsc
 
-    - hdfs dfs -put /home/anabig114211/salaries.avsc /user/anabig114211/caplvl1_avsc/salaries.avsc
+           hdfs dfs -put /home/anabig114211/salaries.avsc /user/anabig114211/caplvl1_avsc/salaries.avsc
 
-    - hdfs dfs -put /home/anabig114211/despartments.avsc /user/anabig114211/caplvl1_avsc/departments.avsc
+           hdfs dfs -put /home/anabig114211/despartments.avsc /user/anabig114211/caplvl1_avsc/departments.avsc
 
-    - hdfs dfs -put /home/anabig114211/dept_emp.avsc /user/anabig114211/caplvl1_avsc/dept_emp.avsc
+           hdfs dfs -put /home/anabig114211/dept_emp.avsc /user/anabig114211/caplvl1_avsc/dept_emp.avsc
 
-    - hdfs dfs -put /home/anabig114211/dept_manager.avsc /user/anabig114211/caplvl1_avsc/dept_manager.avsc
+           hdfs dfs -put /home/anabig114211/dept_manager.avsc /user/anabig114211/caplvl1_avsc/dept_manager.avsc
 
-    - hdfs dfs -put /home/anabig114211/employees.avsc /user/anabig114211/caplvl1_avsc.employees.avsc
+           hdfs dfs -put /home/anabig114211/employees.avsc /user/anabig114211/caplvl1_avsc.employees.avsc
 
-    - hdfs dfs -ls /user/anabig114211/caplvl1_avsc
-
+           hdfs dfs -ls /user/anabig114211/caplvl1_avsc
+       ```
 
     
 3. Hive database and table creation
-    a. Create a database and external table for the table data imported.
-    b. Data Ingestion - Load the data into external table using appropriate path and SerDes.
+    1) Create a database and external table for the table data imported.
+    2) Data Ingestion - Load the data into external table using appropriate path and SerDes.
     
-    --<!-- Hive table creation using the avro schema files -->
-   CREATE EXTERNAL TABLE departments
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   location "/user/anabig114238/hive/warehouse/departments"
-   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/departments.avsc');
+         ```
+             --<!-- Hive table creation using the avro schema files -->
+            CREATE EXTERNAL TABLE departments
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+            STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+            location "/user/anabig114238/hive/warehouse/departments"
+            TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/departments.avsc');
 
-   CREATE EXTERNAL TABLE employees
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   location "/user/anabig114238/hive/warehouse/employees"
-   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/employees.avsc');
+            CREATE EXTERNAL TABLE employees
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+            STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+            location "/user/anabig114238/hive/warehouse/employees"
+            TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/employees.avsc');
 
-   CREATE EXTERNAL TABLE salaries
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   location "/user/anabig114238/hive/warehouse/salaries"
-   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/salaries.avsc');
+            CREATE EXTERNAL TABLE salaries
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+            STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+            location "/user/anabig114238/hive/warehouse/salaries"
+            TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/salaries.avsc');
 
-   CREATE EXTERNAL TABLE titles
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   location "/user/anabig114238/hive/warehouse/titles"
-   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/titles.avsc');
+            CREATE EXTERNAL TABLE titles
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+            STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+            location "/user/anabig114238/hive/warehouse/titles"
+            TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/titles.avsc');
 
-   CREATE EXTERNAL TABLE dept_emp
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   location "/user/anabig114238/hive/warehouse/dept_emp"
-   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_emp.avsc');
+            CREATE EXTERNAL TABLE dept_emp
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+            STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+            location "/user/anabig114238/hive/warehouse/dept_emp"
+            TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_emp.avsc');
 
-   CREATE EXTERNAL TABLE dept_manager
-   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   location "/user/anabig114238/hive/warehouse/dept_manager"
-   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_manager.avsc');
+            CREATE EXTERNAL TABLE dept_manager
+            ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+            STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+            OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+            location "/user/anabig114238/hive/warehouse/dept_manager"
+            TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_manager.avsc');
 
-   --<!-- check the database for tables -->
-   show tables;
+            --<!-- check the database for tables -->
+            show tables;
 
-   --<!-- check the talbes for data -->
-   select * from departments;
+            --<!-- check the talbes for data -->
+            select * from departments;
 
-   select * from employees;
+            select * from employees;
 
-   select * from titles;
+            select * from titles;
 
-   select * from dept_emp;
+            select * from dept_emp;
 
-   select * from dept_manager;
+            select * from dept_manager;
 
-   select * from salaries;
+            select * from salaries;
+         ```
    
-    c. Create views from the tables for specified purposes.
-    
-   CREATE VIEW employeesorg AS
-       SELECT emp_no,                                                      
-   emp_title,                                                                       
-   birth_date,                                                                       
-   first_name,                                                                        
-   last_name,                                                                        
-   sex,                                                                            
-   hire_date,                                                                            
-   no_of_projects,                                                                          
-   last_performance_rating,                                                                         
-   last_date, left_org
-   FROM(
-      SELECT emp_no,                                                      
-   emp_title,                                                                       
-   birth_date,                                                                       
-   first_name,                                                                        
-   last_name,                                                                        
-   sex,                                                                            
-   hire_date,                                                                            
-   no_of_projects,                                                                          
-   last_performance_rating,                                                                         
-   last_date,
-          CASE WHEN LENGTH(last_date) > 8 THEN '1' 
-              WHEN LENGTH(last_date) > 0 THEN '0'
-          END AS left_org
-   FROM employees)t1;
-   
-   --<!-- Salary bins view -->
-   CREATE view BINS as
-   SELECT
-     CASE 
-          WHEN s.salary >= 40000 and s.salary < 50000 THEN '40k-50k'
-          WHEN s.salary >= 50000 and s.salary <60000 THEN '50k-60k'
-          WHEN s.salary >= 60000 and s.salary < 70000 THEN '60k-70k'
-          WHEN s.salary >= 70000 and s.salary < 80000 THEN '70k-80k'
-          WHEN s.salary >= 80000 and s.salary < 90000 THEN '80k-90k'
-          WHEN s.salary >= 90000 and s.salary < 100000 THEN '90k-100k'
-          WHEN s.salary >= 100000 and s.salary < 110000 THEN '100k-110k'
-          WHEN s.salary >= 110000 and s.salary < 120000 THEN '110k-120k'
-          WHEN s.salary >= 120000 and s.salary < 130000 THEN '120k-130k'
-          ELSE 'NA'
-          END AS Bins
-   FROM employeesorg e
-   JOIN salaries s
-   ON s.emp_no = e.emp_no;
-   
-   --<!-- View for Tenure distribution -->
-   CREATE VIEW employees_tenure AS
-   SELECT
-      emp_no,
-      first_name,
-      last_name,
-      hire_date,
-      CAST(SUBSTR(hire_date, -4,4) AS INT) AS hire_year,
-      left_org,
-      last_date,
-      CAST(SUBSTR(last_date, -5, 4) AS INT) AS left_year
-   FROM employeesorg;
+    3) Create views from the tables for specified purposes.
+       ```
+            CREATE VIEW employeesorg AS
+                SELECT emp_no,                                                      
+            emp_title,                                                                       
+            birth_date,                                                                       
+            first_name,                                                                        
+            last_name,                                                                        
+            sex,                                                                            
+            hire_date,                                                                            
+            no_of_projects,                                                                          
+            last_performance_rating,                                                                         
+            last_date, left_org
+            FROM(
+               SELECT emp_no,                                                      
+            emp_title,                                                                       
+            birth_date,                                                                       
+            first_name,                                                                        
+            last_name,                                                                        
+            sex,                                                                            
+            hire_date,                                                                            
+            no_of_projects,                                                                          
+            last_performance_rating,                                                                         
+            last_date,
+                   CASE WHEN LENGTH(last_date) > 8 THEN '1' 
+                       WHEN LENGTH(last_date) > 0 THEN '0'
+                   END AS left_org
+            FROM employees)t1;
 
+            --<!-- Salary bins view -->
+            CREATE view BINS as
+            SELECT
+              CASE 
+                   WHEN s.salary >= 40000 and s.salary < 50000 THEN '40k-50k'
+                   WHEN s.salary >= 50000 and s.salary <60000 THEN '50k-60k'
+                   WHEN s.salary >= 60000 and s.salary < 70000 THEN '60k-70k'
+                   WHEN s.salary >= 70000 and s.salary < 80000 THEN '70k-80k'
+                   WHEN s.salary >= 80000 and s.salary < 90000 THEN '80k-90k'
+                   WHEN s.salary >= 90000 and s.salary < 100000 THEN '90k-100k'
+                   WHEN s.salary >= 100000 and s.salary < 110000 THEN '100k-110k'
+                   WHEN s.salary >= 110000 and s.salary < 120000 THEN '110k-120k'
+                   WHEN s.salary >= 120000 and s.salary < 130000 THEN '120k-130k'
+                   ELSE 'NA'
+                   END AS Bins
+            FROM employeesorg e
+            JOIN salaries s
+            ON s.emp_no = e.emp_no;
+
+            --<!-- View for Tenure distribution -->
+            CREATE VIEW employees_tenure AS
+            SELECT
+               emp_no,
+               first_name,
+               last_name,
+               hire_date,
+               CAST(SUBSTR(hire_date, -4,4) AS INT) AS hire_year,
+               left_org,
+               last_date,
+               CAST(SUBSTR(last_date, -5, 4) AS INT) AS left_year
+            FROM employeesorg;
+         ```
+         
 4. Impala and SparkSQL EDA
-    a. Invalidate Metadata to reload the fresh metadata for Impala query.
-    b. Do EDA on te business problem asked.
+    1) Invalidate Metadata to reload the fresh metadata for Impala query.
+    2) Do EDA on te business problem asked.
     
+
 Q1. A list of employee number, last name, first name, sex, and salary for each employee.
 
       SELECT s.emp_no, e.last_name, e.first_name, e.sex, s.salary 
