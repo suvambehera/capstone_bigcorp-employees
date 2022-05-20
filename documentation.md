@@ -471,11 +471,11 @@ The physical model is of this denormalised database is a Star Schema with a key-
          GROUP BY e.last_performance_rating, d.dept_name
          ORDER BY total_emp DESC;
 
-       c. Open Jupyter notebook and create Spark Session instance.
-       d. Use SparkSQL to perform EDA of the same business problems.
-       e. Perform proper visualisation.
+       3) Open Jupyter notebook and create Spark Session instance.
+       4) Use SparkSQL to perform EDA of the same business problems.
+       5) Perform proper visualisation.
 
-   Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkSQL/Capstone1_SparkSQL.ipynb)
+         Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkSQL/Capstone1_SparkSQL.ipynb)
 
 5. SparkML Model building
     a. Import all the required libraries in Jupyter Labs
@@ -487,6 +487,6 @@ The physical model is of this denormalised database is a Star Schema with a key-
     g. Perform Logistic Regression and Random Forest Classifier.
     h. Compare the result.
     
-Please refer to [SparkML Model](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkML/capstone1_SparkML.ipynb)
+         Please refer to [SparkML Model](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkML/capstone1_SparkML.ipynb)
     
 
