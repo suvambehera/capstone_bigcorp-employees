@@ -20,11 +20,11 @@ The physical model is of this denormalised database is a Star Schema with a key-
 
 ### Data Description
 
-a. Titles (titles.csv): \
+- Titles (titles.csv): \
    title id-Unique id of type of employee (designation id) - Character - Not Null \
    title-Designation Character - Not Null
 
-b. Employees (employees.csv): \
+- Employees (employees.csv): \
    emp_no-Employee Id - Integer - Not Null \
    emp_titles_id-designation id-Not Null \
    birth date-Date of Birth Date Time - Not Null. \
