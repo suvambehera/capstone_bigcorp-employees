@@ -310,6 +310,13 @@ dept no - Unique id for each department character - Not Null
 4. Impala and SparkSQL EDA
     a. Invalidate Metadata to reload the fresh metadata for Impala query.
     b. Do EDA on te business problem asked.
+    
+    ```Q1. A list of employee number, last name, first name, sex, and salary for each employee.
+
+      SELECT s.emp_no, e.last_name, e.first_name, e.sex, s.salary 
+      FROM employeesorg e INNER JOIN salaries s 
+          ON e.emp_no = s.emp_no; ```
+          
     c. Open Jupyter notebook and create Spark Session instance.
     d. Use SparkSQL to perform EDA of the same business problems.
     e. Perform proper visualisation.
