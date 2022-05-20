@@ -21,37 +21,37 @@ The physical model is of this denormalised database is a Star Schema with a key-
 ### Data Description
 
 a. Titles (titles.csv): \
-title id-Unique id of type of employee (designation id) - Character - Not Null \
-title-Designation Character - Not Null
+   title id-Unique id of type of employee (designation id) - Character - Not Null \
+   title-Designation Character - Not Null
 
 b. Employees (employees.csv): \
-emp_no-Employee Id - Integer - Not Null \
-emp_titles_id-designation id-Not Null \
-birth date-Date of Birth Date Time - Not Null. \
-first name- First Name - Character Not Null \
-last name - Last Name Character - Not Null \
-sex-Gender-Character-Not Null \
-hire date - Employee Hire date-Date Time -Not Null \
-no of projects-Number of projects worked on-Integer- Not Null \
-Last performance rating-Last year performance rating - Character - Not Null \
-left-Employee left the organization - Boolean-Not Null \
-Last date - Last date of employment (Exit Date) - Date Time
+   emp_no-Employee Id - Integer - Not Null \
+   emp_titles_id-designation id-Not Null \
+   birth date-Date of Birth Date Time - Not Null. \
+   first name- First Name - Character Not Null \
+   last name - Last Name Character - Not Null \
+   sex-Gender-Character-Not Null \
+   hire date - Employee Hire date-Date Time -Not Null \
+   no of projects-Number of projects worked on-Integer- Not Null \
+   Last performance rating-Last year performance rating - Character - Not Null \
+   left-Employee left the organization - Boolean-Not Null \
+   Last date - Last date of employment (Exit Date) - Date Time
 
 c. Salaries (salaries.csv): \
-emp no- Employee id- Integer - Not Null Salary \
-Employee's Salary-Integer - Not Null
+   emp no- Employee id- Integer - Not Null Salary \
+   Employee's Salary-Integer - Not Null
 
 d. Departments (departments.csv): \
-dept no-Unique id for each department - character - Not Null \
-dept_name-Department Name-Character - Not Null
+   dept no-Unique id for each department - character - Not Null \
+   dept_name-Department Name-Character - Not Null
 
 e. Department Managers (dept_manager.csv): \
-dept no - Unique id for each department-character - Not Null \
-emp_no-Employee number (head of the department )- Integer - Not Null
+   dept no - Unique id for each department-character - Not Null \
+   emp_no-Employee number (head of the department )- Integer - Not Null
 
 f. Department Employees (dept_emp.csv): \
-emp no-Employee id - Integer - Not Null \
-dept no - Unique id for each department character - Not Null
+   emp no-Employee id - Integer - Not Null \
+   dept no - Unique id for each department character - Not Null
 
 ## Technology stack
 
