@@ -81,10 +81,10 @@ dept no - Unique id for each department character - Not Null
     b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.
     
  ``` create database anabig114211; 
-     use anabig114211; ```
+     use anabig114211; 
     
     
- ``` create table titles(
+     create table titles(
      title_id varchar(10) PRIMARY KEY NOT NULL,
      title varchar(30) NOT NULL);
 
@@ -99,11 +99,11 @@ dept no - Unique id for each department character - Not Null
      no_of_projects int NOT NULL,
      last_performance_rating varchar(10) NOT NULL,
      left_org int NOT NULL,
-     last_date varchar(10)); ```
+     last_date varchar(10)); 
 
    <!-- make sure not to name any tables with MySQL reserved keywords -->
 
- ``` create table salaries(
+     create table salaries(
      emp_no int NOT NULL,
      salary bigint NOT NULL);
 
