@@ -102,25 +102,25 @@ dept no - Unique id for each department character - Not Null
 
    <!-- make sure not to name any tables with MySQL reserved keywords -->
 
-    - create table salaries(
-    - emp_no int NOT NULL,
-    - salary bigint NOT NULL);
+   ```create table salaries(
+     emp_no int NOT NULL,
+     salary bigint NOT NULL);
 
-    - create table departments(
-    - dept_no varchar(20) PRIMARY KEY NOT NULL ,
-    - dept_name varchar(30) NOT NULL);
+     create table departments(
+     dept_no varchar(20) PRIMARY KEY NOT NULL ,
+     dept_name varchar(30) NOT NULL);
 
-    - CREATE TABLE dept_emp(
-    - emp_no int NOT NULL,
-    - dept_no varchar(20) NOT NULL); 
+     CREATE TABLE dept_emp(
+     emp_no int NOT NULL,
+     dept_no varchar(20) NOT NULL); 
 
-    - create table Department_Managers_jes(
-    - dept_no varchar(20) NOT NULL,
-    - emp_no int NOT NULL); 
+     create table Department_Managers_jes(
+     dept_no varchar(20) NOT NULL,
+     emp_no int NOT NULL); ```
     
     c. Upload the data into the HDFS FTP
     
-    - /home/anabig114211/capstonelv1_empdata
+    ``` /home/anabig114211/capstonelv1_empdata ```
     
     d. Data Ingestion - Load the data into the table using appropriate delimiter.
     
