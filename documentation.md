@@ -188,288 +188,285 @@ f. Department Employees (dept_emp.csv): \
     b. Data Ingestion - Load the data into external table using appropriate path and SerDes.
     
     --<!-- Hive table creation using the avro schema files -->
-   --CREATE EXTERNAL TABLE departments
-   --ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   --STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   --OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   --location "/user/anabig114238/hive/warehouse/departments"
-   --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/departments.avsc');
+   CREATE EXTERNAL TABLE departments
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   location "/user/anabig114238/hive/warehouse/departments"
+   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/departments.avsc');
 
-   --CREATE EXTERNAL TABLE employees
-   --ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   --STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   --OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   --location "/user/anabig114238/hive/warehouse/employees"
-   --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/employees.avsc');
+   CREATE EXTERNAL TABLE employees
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   location "/user/anabig114238/hive/warehouse/employees"
+   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/employees.avsc');
 
-   --CREATE EXTERNAL TABLE salaries
-   --ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   --STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   --OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   --location "/user/anabig114238/hive/warehouse/salaries"
-   --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/salaries.avsc');
+   CREATE EXTERNAL TABLE salaries
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   location "/user/anabig114238/hive/warehouse/salaries"
+   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/salaries.avsc');
 
-   --CREATE EXTERNAL TABLE titles
-   --ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   --STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   --OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   --location "/user/anabig114238/hive/warehouse/titles"
-   --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/titles.avsc');
+   CREATE EXTERNAL TABLE titles
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   location "/user/anabig114238/hive/warehouse/titles"
+   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/titles.avsc');
 
-   --CREATE EXTERNAL TABLE dept_emp
-   --ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   --STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   --OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   --location "/user/anabig114238/hive/warehouse/dept_emp"
-   --TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_emp.avsc');
+   CREATE EXTERNAL TABLE dept_emp
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   location "/user/anabig114238/hive/warehouse/dept_emp"
+   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_emp.avsc');
 
-   -- CREATE EXTERNAL TABLE dept_manager
-   -- ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
-   -- STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
-   -- OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
-   -- location "/user/anabig114238/hive/warehouse/dept_manager"
-   -- TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_manager.avsc');
+   CREATE EXTERNAL TABLE dept_manager
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+   STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+   OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+   location "/user/anabig114238/hive/warehouse/dept_manager"
+   TBLPROPERTIES ('avro.schema.url'='/user/anabig114211/caplvl1_avsc/dept_manager.avsc');
 
    --<!-- check the database for tables -->
-   -- show tables;
+   show tables;
 
    --<!-- check the talbes for data -->
-   -- select * from departments;
+   select * from departments;
 
-   -- select * from employees;
+   select * from employees;
 
-   -- select * from titles;
+   select * from titles;
 
-   -- select * from dept_emp;
+   select * from dept_emp;
 
-   -- select * from dept_manager;
+   select * from dept_manager;
 
-   -- select * from salaries;
+   select * from salaries;
    
     c. Create views from the tables for specified purposes.
     
-   -- CREATE VIEW employeesorg AS
-   --    SELECT emp_no,                                                      
-   -- emp_title,                                                                       
-   -- birth_date,                                                                       
-   -- first_name,                                                                        
-   -- last_name,                                                                        
-   -- sex,                                                                            
-   -- hire_date,                                                                            
-   -- no_of_projects,                                                                          
-   -- last_performance_rating,                                                                         
-   -- last_date, left_org
-   -- FROM(
-   --    SELECT emp_no,                                                      
-   -- emp_title,                                                                       
-   -- birth_date,                                                                       
-   -- first_name,                                                                        
-   -- last_name,                                                                        
-   -- sex,                                                                            
-   -- hire_date,                                                                            
-   -- no_of_projects,                                                                          
-   -- last_performance_rating,                                                                         
-   -- last_date,
-   --        CASE WHEN LENGTH(last_date) > 8 THEN '1' 
-   --            WHEN LENGTH(last_date) > 0 THEN '0'
-   --        END AS left_org
-   -- FROM employees)t1;
+   CREATE VIEW employeesorg AS
+       SELECT emp_no,                                                      
+   emp_title,                                                                       
+   birth_date,                                                                       
+   first_name,                                                                        
+   last_name,                                                                        
+   sex,                                                                            
+   hire_date,                                                                            
+   no_of_projects,                                                                          
+   last_performance_rating,                                                                         
+   last_date, left_org
+   FROM(
+      SELECT emp_no,                                                      
+   emp_title,                                                                       
+   birth_date,                                                                       
+   first_name,                                                                        
+   last_name,                                                                        
+   sex,                                                                            
+   hire_date,                                                                            
+   no_of_projects,                                                                          
+   last_performance_rating,                                                                         
+   last_date,
+          CASE WHEN LENGTH(last_date) > 8 THEN '1' 
+              WHEN LENGTH(last_date) > 0 THEN '0'
+          END AS left_org
+   FROM employees)t1;
    
    --<!-- Salary bins view -->
-   -- CREATE view BINS as
-   -- SELECT
-   --    CASE 
-   --        WHEN s.salary >= 40000 and s.salary < 50000 THEN '40k-50k'
-   --        WHEN s.salary >= 50000 and s.salary <60000 THEN '50k-60k'
-   --        WHEN s.salary >= 60000 and s.salary < 70000 THEN '60k-70k'
-   --        WHEN s.salary >= 70000 and s.salary < 80000 THEN '70k-80k'
-   --        WHEN s.salary >= 80000 and s.salary < 90000 THEN '80k-90k'
-   --        WHEN s.salary >= 90000 and s.salary < 100000 THEN '90k-100k'
-   --        WHEN s.salary >= 100000 and s.salary < 110000 THEN '100k-110k'
-   --        WHEN s.salary >= 110000 and s.salary < 120000 THEN '110k-120k'
-   --        WHEN s.salary >= 120000 and s.salary < 130000 THEN '120k-130k'
-   --        ELSE 'NA'
-   --        END AS Bins
-   -- FROM employeesorg e
-   -- JOIN salaries s
-   -- ON s.emp_no = e.emp_no;
+   CREATE view BINS as
+   SELECT
+     CASE 
+          WHEN s.salary >= 40000 and s.salary < 50000 THEN '40k-50k'
+          WHEN s.salary >= 50000 and s.salary <60000 THEN '50k-60k'
+          WHEN s.salary >= 60000 and s.salary < 70000 THEN '60k-70k'
+          WHEN s.salary >= 70000 and s.salary < 80000 THEN '70k-80k'
+          WHEN s.salary >= 80000 and s.salary < 90000 THEN '80k-90k'
+          WHEN s.salary >= 90000 and s.salary < 100000 THEN '90k-100k'
+          WHEN s.salary >= 100000 and s.salary < 110000 THEN '100k-110k'
+          WHEN s.salary >= 110000 and s.salary < 120000 THEN '110k-120k'
+          WHEN s.salary >= 120000 and s.salary < 130000 THEN '120k-130k'
+          ELSE 'NA'
+          END AS Bins
+   FROM employeesorg e
+   JOIN salaries s
+   ON s.emp_no = e.emp_no;
    
    --<!-- View for Tenure distribution -->
-   -- CREATE VIEW employees_tenure AS
-   -- SELECT
-   --    emp_no,
-   --    first_name,
-   --    last_name,
-   --    hire_date,
-   --    CAST(SUBSTR(hire_date, -4,4) AS INT) AS hire_year,
-   --    left_org,
-   --    last_date,
-   --    CAST(SUBSTR(last_date, -5, 4) AS INT) AS left_year
-   -- FROM employeesorg;
+   CREATE VIEW employees_tenure AS
+   SELECT
+      emp_no,
+      first_name,
+      last_name,
+      hire_date,
+      CAST(SUBSTR(hire_date, -4,4) AS INT) AS hire_year,
+      left_org,
+      last_date,
+      CAST(SUBSTR(last_date, -5, 4) AS INT) AS left_year
+   FROM employeesorg;
 
 4. Impala and SparkSQL EDA
     a. Invalidate Metadata to reload the fresh metadata for Impala query.
     b. Do EDA on te business problem asked.
     
-    ```Q1. A list of employee number, last name, first name, sex, and salary for each employee.
+Q1. A list of employee number, last name, first name, sex, and salary for each employee.
 
       SELECT s.emp_no, e.last_name, e.first_name, e.sex, s.salary 
       FROM employeesorg e INNER JOIN salaries s 
           ON e.emp_no = s.emp_no; ```
           
        ![image](https://user-images.githubusercontent.com/86786263/169455533-bcdaf314-be4f-4a94-b81b-5c36d6e10ccd.png)
-  --Q2. First name, last name, and hire date for employees who were hired in 1986
+       
+ Q2. First name, last name, and hire date for employees who were hired in 1986
 
-SELECT first_name, last_name, hire_date
-FROM employeesorg
-WHERE hire_date LIKE '%1986';
+      SELECT first_name, last_name, hire_date
+      FROM employeesorg
+      WHERE hire_date LIKE '%1986';
 
 
---Q3. List showing Manager of each department  with dept number, dept name, 
---manager's emp number, last name and first name. 
+Q3. List showing Manager of each department  with dept number, dept name, manager's emp number, last name and first name. 
 
-SELECT d.dept_no, d.dept_name, dm.emp_no, e.last_name, e.first_name
-FROM departments d INNER JOIN dept_manager dm
-    ON d.dept_no = dm.dept_no LEFT JOIN employeesorg e
-    ON e.emp_no = dm.emp_no;
+      SELECT d.dept_no, d.dept_name, dm.emp_no, e.last_name, e.first_name
+      FROM departments d INNER JOIN dept_manager dm
+          ON d.dept_no = dm.dept_no LEFT JOIN employeesorg e
+          ON e.emp_no = dm.emp_no;
+
     
+Q4. List dept of each employee with emp number, last name, first name, dept name.
+
+      SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
+      FROM employeesorg e INNER JOIN dept_emp de
+          ON e.emp_no = de.emp_no INNER JOIN departments d
+          ON de.dept_no = d.dept_no;
+
     
---Q4. List dept of each employee with emp number, last name, first name, dept name.
+Q5. List of employees first name, last name, sex with first name 'Hercules' and last name begin with 'B'.
 
-SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
-FROM employeesorg e INNER JOIN dept_emp de
-    ON e.emp_no = de.emp_no INNER JOIN departments d
-    ON de.dept_no = d.dept_no;
+      SELECT first_name, last_name, sex
+      FROM employeesorg
+      WHERE first_name LIKE 'Hercules' AND
+          last_name LIKE 'B%';
+
     
-    
---Q5. List of employees first name, last name, sex with first name 'Hercules' and 
---last name begin with 'B'.
+Q6. List of all employees in Sales departments with their emp number, last name, first name, dept name.
 
-SELECT first_name, last_name, sex
-FROM employeesorg
-WHERE first_name LIKE 'Hercules' AND
-    last_name LIKE 'B%';
-    
-    
---Q6. List of all employees in Sales departments with their emp number, last name, first name, 
---dept name.
-
-SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
-FROM departments d INNER JOIN dept_emp de
-    ON d.dept_no = de.dept_no INNER JOIN employeesorg e
-    ON de.emp_no = e.emp_no
-WHERE d.dept_name LIKE '%Sales%';
+      SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
+      FROM departments d INNER JOIN dept_emp de
+          ON d.dept_no = de.dept_no INNER JOIN employeesorg e
+          ON de.emp_no = e.emp_no
+      WHERE d.dept_name LIKE '%Sales%';
 
 
---Q7. List of all employees in Sales and Development departments with their emp number, last name, 
---first name, dept name.
+Q7. List of all employees in Sales and Development departments with their emp number, last name, first name, dept name.
 
-SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
-FROM departments d INNER JOIN dept_emp de
-    ON d.dept_no = de.dept_no INNER JOIN employeesorg e
-    ON de.emp_no = e.emp_no
-WHERE d.dept_name LIKE '%Sales%' or d.dept_name LIKE '%development%';
-
-
---Q8. List employee count with same last name
-
-SELECT last_name, COUNT(last_name) as surname_count
-FROM employeesorg
-GROUP BY last_name
-ORDER BY COUNT(last_name) DESC;
+      SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
+      FROM departments d INNER JOIN dept_emp de
+          ON d.dept_no = de.dept_no INNER JOIN employeesorg e
+          ON de.emp_no = e.emp_no
+      WHERE d.dept_name LIKE '%Sales%' or d.dept_name LIKE '%development%';
 
 
---Q9. Salary distribution using histogram
+Q8. List employee count with same last name
 
-SELECT bins, COUNT(*)
-FROM bins
-GROUP BY bins;
+      SELECT last_name, COUNT(last_name) as surname_count
+      FROM employeesorg
+      GROUP BY last_name
+      ORDER BY COUNT(last_name) DESC;
+
+
+Q9. Salary distribution using histogram
+
+      SELECT bins, COUNT(*)
+      FROM bins
+      GROUP BY bins;
 
 ![image](https://user-images.githubusercontent.com/86786263/169456015-733935ee-b469-4b5a-8f53-49ca28a71d3d.png)
 
 
---Q10.Average salary per designation using Bar graph
+Q10.Average salary per designation using Bar graph
 
-SELECT t.title, AVG(s.salary) as avg_salary
-FROM employeesorg e INNER JOIN salaries s 
-    ON e.emp_no = s.emp_no INNER JOIN titles t  
-    ON t.title_id = e.emp_title
-GROUP BY t.title;
+      SELECT t.title, AVG(s.salary) as avg_salary
+      FROM employeesorg e INNER JOIN salaries s 
+          ON e.emp_no = s.emp_no INNER JOIN titles t  
+          ON t.title_id = e.emp_title
+      GROUP BY t.title;
 
 ![image](https://user-images.githubusercontent.com/86786263/169456098-78812b7a-dc0f-46c6-853f-73cf3867a588.png)
 
---Q11. Calculate employee tenure and tenure distribution among employees.
+Q11. Calculate employee tenure and tenure distribution among employees.
 
-SELECT COUNT(emp_no) AS emp_count,
-    CASE    
-        WHEN left_year IS NULL THEN (2013-hire_year)
-        ELSE (left_year - hire_year)
-        END AS tenure
-FROM employees_tenure
-GROUP BY CASE    
-        WHEN left_year IS NULL THEN (2013-hire_year)
-        ELSE (left_year - hire_year)
-        END
-ORDER BY tenure;
+      SELECT COUNT(emp_no) AS emp_count,
+          CASE    
+              WHEN left_year IS NULL THEN (2013-hire_year)
+              ELSE (left_year - hire_year)
+              END AS tenure
+      FROM employees_tenure
+      GROUP BY CASE    
+              WHEN left_year IS NULL THEN (2013-hire_year)
+              ELSE (left_year - hire_year)
+              END
+      ORDER BY tenure;
 
 ![image](https://user-images.githubusercontent.com/86786263/169456244-7e2e48bc-691b-4999-9169-78a0c6292a71.png)
 
 
---Q12. Net expenditure for each dept
+Q12. Net expenditure for each dept
 
-SELECT d.dept_name, SUM(s.salary)
-FROM departments d LEFT JOIN dept_emp de 
-    ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
-    ON de.emp_no = e.emp_no INNER JOIN salaries s 
-    ON e.emp_no = s.emp_no
-GROUP BY d.dept_name;
+      SELECT d.dept_name, SUM(s.salary)
+      FROM departments d LEFT JOIN dept_emp de 
+          ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
+          ON de.emp_no = e.emp_no INNER JOIN salaries s 
+          ON e.emp_no = s.emp_no
+      GROUP BY d.dept_name;
 
 
---Q13. Sex ratio each department
+Q13. Sex ratio each department
 
-SELECT d.dept_name, SUM(CASE
-                    WHEN e.sex = 'M' THEN 1 ELSE 0 END) AS Male_Count, SUM(CASE
-                                WHEN e.sex = 'F' THEN 1 ELSE 0 END) AS Female_Count, 
-        COUNT(IF(e.sex = 'M', 1, NULL))/COUNT(IF(e.sex = 'F', 1, NULL)) as ratio
-FROM employeesorg e LEFT JOIN dept_emp de 
-    ON e.emp_no = de.emp_no INNER JOIN departments d 
-    ON d.dept_no = de.dept_no
-    GROUP BY d.dept_name;
+      SELECT d.dept_name, SUM(CASE
+                          WHEN e.sex = 'M' THEN 1 ELSE 0 END) AS Male_Count, SUM(CASE
+                                      WHEN e.sex = 'F' THEN 1 ELSE 0 END) AS Female_Count, 
+              COUNT(IF(e.sex = 'M', 1, NULL))/COUNT(IF(e.sex = 'F', 1, NULL)) as ratio
+      FROM employeesorg e LEFT JOIN dept_emp de 
+          ON e.emp_no = de.emp_no INNER JOIN departments d 
+          ON d.dept_no = de.dept_no
+          GROUP BY d.dept_name;
     
     
----Q14. Highest paid employee first and last name
+Q14. Highest paid employee first and last name
 
-SELECT d.dept_name, e.first_name, e.last_name, s.salary
-FROM departments d LEFT JOIN dept_emp de 
-    ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
-    ON de.emp_no = e.emp_no INNER JOIN salaries s 
-    ON e.emp_no = s.emp_no
-ORDER BY s.salary
-LIMIT 1;
-
-
----Q15. Number of employee at each designation
-
-SELECT t.title, COUNT(*) AS total_employees
-FROM employeesorg e INNER JOIN titles t 
-    ON e.emp_title = t.title_id
-GROUP BY t.title;
+      SELECT d.dept_name, e.first_name, e.last_name, s.salary
+      FROM departments d LEFT JOIN dept_emp de 
+          ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
+          ON de.emp_no = e.emp_no INNER JOIN salaries s 
+          ON e.emp_no = s.emp_no
+      ORDER BY s.salary
+      LIMIT 1;
 
 
----Q16. Performance rating distribution
+Q15. Number of employee at each designation
 
-SELECT e.last_performance_rating, d.dept_name, COUNT(*) AS total_emp
-FROM departments d LEFT JOIN dept_emp de 
-    ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
-    ON de.emp_no = e.emp_no
-GROUP BY e.last_performance_rating, d.dept_name
-ORDER BY total_emp DESC; ```
+      SELECT t.title, COUNT(*) AS total_employees
+      FROM employeesorg e INNER JOIN titles t 
+          ON e.emp_title = t.title_id
+      GROUP BY t.title;
+
+
+Q16. Performance rating distribution
+
+      SELECT e.last_performance_rating, d.dept_name, COUNT(*) AS total_emp
+      FROM departments d LEFT JOIN dept_emp de 
+          ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
+          ON de.emp_no = e.emp_no
+      GROUP BY e.last_performance_rating, d.dept_name
+      ORDER BY total_emp DESC;
 
     c. Open Jupyter notebook and create Spark Session instance.
     d. Use SparkSQL to perform EDA of the same business problems.
     e. Perform proper visualisation.
     
-Please refer to [SparkSQL EDA](https://github.com/suvambehera/bigcorp-employees/tree/main/SparkSQL)
+Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/4f8c8c0e1b5269fc2da8c8ba0b56d7aa56f4a051/SparkSQL/Capstone1_SparkSQL.ipynb)
     
 5. SparkML Model building
     a. Import all the required libraries in Jupyter Labs
