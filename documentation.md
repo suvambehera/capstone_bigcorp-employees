@@ -81,9 +81,9 @@ dept no - Unique id for each department character - Not Null
     b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.
     
  ``` create database anabig114211;
-     use anabig114211;```
+     use anabig114211; ```
     
-  ```create table titles(
+ ``` create table titles(
      title_id varchar(10) PRIMARY KEY NOT NULL,
      title varchar(30) NOT NULL);
 
