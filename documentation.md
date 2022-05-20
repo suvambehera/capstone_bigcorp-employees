@@ -76,29 +76,29 @@ dept no - Unique id for each department character - Not Null
 1. Database creation: 
     a. Connecting to Linux terminal to access MySQL server for database creation.
     
-    - mysql -u username -p
+    ``` mysql -u username -p ```
     
     b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.
     
-    - create database anabig114211;
-    - use anabig114211;
+ ``` create database anabig114211;
+     use anabig114211;
     
-    - create table titles(
-    - title_id varchar(10) PRIMARY KEY NOT NULL,
-    - title varchar(30) NOT NULL);
+     create table titles(
+     title_id varchar(10) PRIMARY KEY NOT NULL,
+     title varchar(30) NOT NULL);
 
-    - create table employees(
-    - emp_no int PRIMARY KEY NOT NULL,
-    - emp_title_id varchar(10) NOT NULL,
-    - birth_date varchar(10) NOT NULL,
-    - first_name varchar(20) NOT NULL,
-    - last_name varchar(20) NOT NULL,
-    - sex varchar(5) NOT NULL,
-    - hire_date varchar(10) NOT NULL,
-    - no_of_projects int NOT NULL,
-    - last_performance_rating varchar(10) NOT NULL,
-    - left_org int NOT NULL,
-    - last_date varchar(10));
+     create table employees(
+     emp_no int PRIMARY KEY NOT NULL,
+     emp_title_id varchar(10) NOT NULL,
+     birth_date varchar(10) NOT NULL,
+     first_name varchar(20) NOT NULL,
+     last_name varchar(20) NOT NULL,
+     sex varchar(5) NOT NULL,
+     hire_date varchar(10) NOT NULL,
+     no_of_projects int NOT NULL,
+     last_performance_rating varchar(10) NOT NULL,
+     left_org int NOT NULL,
+     last_date varchar(10));```
 
    <!-- make sure not to name any tables with MySQL reserved keywords -->
 
