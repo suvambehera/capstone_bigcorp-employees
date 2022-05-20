@@ -10,12 +10,12 @@ The data acquired is from a major corporation's employees database over a period
 
 ### Tables
 The physical model is of this denormalised database is a Star Schema with a key-dimension tables.
-- [employees.csv](https://github.com/suvambehera/bigcorp-employees/files/8735212/employees.csv) which has the data of former and current every employee.
-- [departments.csv](https://github.com/suvambehera/bigcorp-employees/files/8735210/departments.csv) which has the data about the various departments within the organisation.
-- [dept_manager.csv](https://github.com/suvambehera/bigcorp-employees/files/8735214/dept_manager.csv) about the manager and their working department.
-- [dept_emp.csv](https://github.com/suvambehera/bigcorp-employees/files/8735216/dept_emp.csv) consists of information of all employees within any particular department.
-- [salaries.csv](https://github.com/suvambehera/bigcorp-employees/files/8735224/salaries.csv) has the salary information about each employee.
-- [titles.csv](https://github.com/suvambehera/bigcorp-employees/files/8735231/titles.csv) stores the working designation of the employees.
+- [employees.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735212/employees.csv) which has the data of former and current every employee.
+- [departments.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735210/departments.csv) which has the data about the various departments within the organisation.
+- [dept_manager.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735214/dept_manager.csv) about the manager and their working department.
+- [dept_emp.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735216/dept_emp.csv) consists of information of all employees within any particular department.
+- [salaries.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735224/salaries.csv) has the salary information about each employee.
+- [titles.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735231/titles.csv) stores the working designation of the employees.
 
 
 ### Data Description
