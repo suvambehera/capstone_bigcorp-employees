@@ -73,15 +73,16 @@ The physical model is of this denormalised database is a Star Schema with a key-
 
 ## Architecture of Pipeline (Stages)
 
-- Database creation: \
-    a. Connecting to Linux terminal to access MySQL server for database creation.\
-       ```
+### Database creation: 
+   1) Connecting to Linux terminal to access MySQL server for database creation.
+         ```
            mysql -u username -p 
-       ```
-    b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.\
+         ```
+   2) Schema definition - In the database create 6 table corresponding to the files, with proper schema.
     
-       ``` create database anabig114211; 
-           use anabig114211; 
+       ``` 
+         create database anabig114211; 
+         use anabig114211; 
 
 
            create table titles(
@@ -100,7 +101,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
            last_performance_rating varchar(10) NOT NULL,
            left_org int NOT NULL,
            last_date varchar(10)); 
-      ```
+      
          <!-- make sure not to name any tables with MySQL reserved keywords -->
 
            create table salaries(
@@ -117,9 +118,11 @@ The physical model is of this denormalised database is a Star Schema with a key-
 
            create table Department_Managers_jes(
            dept_no varchar(20) NOT NULL,
-           emp_no int NOT NULL); ```
+           emp_no int NOT NULL); 
+           
+          ```
     
-    c. Upload the data into the HDFS FTP
+   3) Upload the data into the HDFS FTP
     
        ``` /home/anabig114211/capstonelv1_empdata ```
     
