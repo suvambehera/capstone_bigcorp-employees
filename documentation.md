@@ -463,13 +463,13 @@ FROM departments d LEFT JOIN dept_emp de
     ON d.dept_no = de.dept_no INNER JOIN employeesorg e 
     ON de.emp_no = e.emp_no
 GROUP BY e.last_performance_rating, d.dept_name
-ORDER BY total_emp DESC;
+ORDER BY total_emp DESC; ```
 
     c. Open Jupyter notebook and create Spark Session instance.
     d. Use SparkSQL to perform EDA of the same business problems.
     e. Perform proper visualisation.
     
-    Please refer to [SparkSQL EDA](https://github.com/suvambehera/bigcorp-employees/tree/main/SparkSQL)
+Please refer to [SparkSQL EDA](https://github.com/suvambehera/bigcorp-employees/tree/main/SparkSQL)
     
 5. SparkML Model building
     a. Import all the required libraries in Jupyter Labs
