@@ -469,7 +469,7 @@ ORDER BY total_emp DESC;
     d. Use SparkSQL to perform EDA of the same business problems.
     e. Perform proper visualisation.
     
-    ### Please refer to [SparkSQL EDA](https://github.com/suvambehera/bigcorp-employees/blob/main/SparkSQL/Capstone1_SparkSQL.ipynb)
+    ### Please refer to [SparkSQL EDA](https://github.com/suvambehera/bigcorp-employees/tree/main/SparkSQL)
     
 5. SparkML Model building
     a. Import all the required libraries in Jupyter Labs
