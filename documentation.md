@@ -126,8 +126,8 @@ The physical model is of this denormalised database is a Star Schema with a key-
        ``` /home/anabig114211/capstonelv1_empdata ```
     
    4) Data Ingestion - Load the data into the table using appropriate delimiter.
-    
-        ``` load data local infile '/home/anabig114211/titles.csv' into table titles
+         ```
+            load data local infile '/home/anabig114211/titles.csv' into table titles
             fields terminated by ','
             ignore 1 rows;
 
