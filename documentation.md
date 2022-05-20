@@ -1,6 +1,6 @@
 # bigcorp-employees
 
-# Project Objective
+## Project Objective
 Create a date engineering solution to a HR employee data by formulating a end-to-end pipeline utilising Big data and Machine Learning technolgy stacks to gain insights using exploratory data analysis and to build ML clasffication models.
 
 
