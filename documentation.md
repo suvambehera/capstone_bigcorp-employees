@@ -122,8 +122,9 @@ The physical model is of this denormalised database is a Star Schema with a key-
        ```
     
    3) Upload the data into the HDFS FTP
-    
-       ``` /home/anabig114211/capstonelv1_empdata ```
+       ```
+          /home/anabig114211/capstonelv1_empdata 
+       ```
     
    4) Data Ingestion - Load the data into the table using appropriate delimiter.
          ```
@@ -149,18 +150,20 @@ The physical model is of this denormalised database is a Star Schema with a key-
 
             load data local infile '/home/anabig114211/dept_manager.csv' into table dept_manager
             fields terminated by ','
-            ignore 1 rows; ```
+            ignore 1 rows; 
+         ```
    
 2. Data and Schema transfer to HDFS and Hive
     1) Select a compressed file format (AVRO) for the data to be transferred.
     2) Use Sqoop command to transfer all table data to a specified location into HDFS directory.
-    
-        ``` sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
+        ```
+           sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
            --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
-           --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver ```
-      
+           --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver 
+         ```
+         
     3) In Linux shell, transfer the .avsc schema file to another specified HDFS directory.
-      ```
+       ```
            <!-- check if all files were imported successfully from the Sqoop tranfer -->
            <!-- avsc schema files in linux home -->
            ls -l /home/anabig114211/*.avsc
