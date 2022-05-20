@@ -81,9 +81,9 @@ dept no - Unique id for each department character - Not Null
     b. Schema definition - In the database create 6 table corresponding to the files, with proper schema.
     
  ``` create database anabig114211;
-     use anabig114211;
+     use anabig114211;```
     
-     create table titles(
+  ```create table titles(
      title_id varchar(10) PRIMARY KEY NOT NULL,
      title varchar(30) NOT NULL);
 
@@ -124,37 +124,37 @@ dept no - Unique id for each department character - Not Null
     
     d. Data Ingestion - Load the data into the table using appropriate delimiter.
     
-    - load data local infile '/home/anabig114211/titles.csv' into table titles
-    - fields terminated by ','
-    - ignore 1 rows;
+  ``` load data local infile '/home/anabig114211/titles.csv' into table titles
+      fields terminated by ','
+      ignore 1 rows;
 
-    - load data local infile '/home/anabig114211/employees.csv' into table employees
-    - fields terminated by ','
-    - ignore 1 rows;
+      load data local infile '/home/anabig114211/employees.csv' into table employees
+      fields terminated by ','
+      ignore 1 rows;
 
-    - load data local infile '/home/anabig114211/salaries.csv' into table salaries
-    - fields terminated by ','
-    - ignore 1 rows;
+      load data local infile '/home/anabig114211/salaries.csv' into table salaries
+      fields terminated by ','
+      ignore 1 rows;
 
-    - load data local infile '/home/anabig114211/departments.csv' into table departments
-    - fields terminated by ','
-    - ignore 1 rows;
+      load data local infile '/home/anabig114211/departments.csv' into table departments
+      fields terminated by ','
+      ignore 1 rows;
 
-    - load data local infile '/home/anabig114211/dept_emp.csv' into table dept_emp
-    - fields terminated by ','
-    - ignore 1 rows;
+      load data local infile '/home/anabig114211/dept_emp.csv' into table dept_emp
+      fields terminated by ','
+      ignore 1 rows;
 
-    - load data local infile '/home/anabig114211/dept_manager.csv' into table dept_manager
-    - fields terminated by ','
-    - ignore 1 rows;
+      load data local infile '/home/anabig114211/dept_manager.csv' into table dept_manager
+      fields terminated by ','
+      ignore 1 rows; ```
    
 2. Data and Schema transfer to HDFS and Hive
     a. Select a compressed file format (AVRO) for the data to be transferred.
     b. Use Sqoop command to transfer all table data to a specified location into HDFS directory.
     
-    - sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
-    - --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
-    - --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver
+  ``` sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
+     --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
+     --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver ```
       
     c. In Linux shell, transfer the .avsc schema file to another specified HDFS directory.
     
