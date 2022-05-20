@@ -73,7 +73,7 @@ dept no - Unique id for each department character - Not Null
 
 ## Architecture of Pipeline (Stages)
 
-1. Database creation: 
+1. Database creation: \
     a. Connecting to Linux terminal to access MySQL server for database creation.
     
     ``` mysql -u username -p ```
@@ -98,11 +98,11 @@ dept no - Unique id for each department character - Not Null
      no_of_projects int NOT NULL,
      last_performance_rating varchar(10) NOT NULL,
      left_org int NOT NULL,
-     last_date varchar(10));```
+     last_date varchar(10)); ```
 
    <!-- make sure not to name any tables with MySQL reserved keywords -->
 
-   ```create table salaries(
+ ``` create table salaries(
      emp_no int NOT NULL,
      salary bigint NOT NULL);
 
