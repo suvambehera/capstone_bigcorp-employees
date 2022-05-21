@@ -153,16 +153,18 @@ The physical model is of this denormalised database is a Star Schema with key-di
             ignore 1 rows; 
          ```
    
-2. Data and Schema transfer to HDFS and Hive
-    1) Select a compressed file format (AVRO) for the data to be transferred.
-    2) Use Sqoop command to transfer all table data to a specified location into HDFS directory.
+### Data and Schema transfer to HDFS and Hive
+
+   1) Select a compressed file format (AVRO) for the data to be transferred.
+   2) Use Sqoop command to transfer all table data to a specified location into HDFS directory.
+    
         ```
            sqoop import-all-tables  --connect jdbc:mysql://ip-10-1-1-204.ap-south-1.compute.internal:3306/anabig114211
            --username anabig114211 --password Bigdata123 --compression-codec=snappy --as-avrodatafile 
            --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver 
-         ```
+        ```
          
-    3) From Linux local file system, transfer the .avsc schema file to a specified HDFS directory.
+   3) From Linux local file system, transfer the .avsc schema file to a specified HDFS directory.
        ```
            <!-- check if all files were imported successfully from the Sqoop tranfer -->
            <!-- avsc schema files in linux home -->
@@ -188,9 +190,9 @@ The physical model is of this denormalised database is a Star Schema with key-di
        ```
 
     
-3. Hive database and table creation
-    1) Create a database and external table for the table data imported.
-    2) Data Ingestion - Load the data into 6 external tables using proper path and SerDes.
+### Hive database and table creation
+   1) Create a database and external table for the table data imported.
+   2) Data Ingestion - Load the data into 6 external tables using proper path and SerDes.
     
          ```
              --<!-- Hive table creation using the avro schema files -->
@@ -253,7 +255,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
             select * from salaries;
          ```
    
-    3) Create views for specified purposes.
+   3) Create views for specified purposes.
        ```
             CREATE VIEW employeesorg AS
                 SELECT emp_no,                                                      
@@ -315,12 +317,12 @@ The physical model is of this denormalised database is a Star Schema with key-di
             FROM employeesorg;
          ```
          
-4. Impala and SparkSQL EDA
-    1) Invalidate Metadata to reload the fresh metadata for Impala query.
-    2) Do EDA for te business problem asked.
+### Impala and SparkSQL EDA
+   1) Invalidate Metadata to reload the fresh metadata for Impala query.
+   2) Do EDA for te business problem asked.
     
 
-   Q1. A list of employee number, last name, first name, sex, and salary for each employee.
+   Ques1. A list of employee number, last name, first name, sex, and salary for each employee.
 
          SELECT s.emp_no, e.last_name, e.first_name, e.sex, s.salary 
          FROM employeesorg e INNER JOIN salaries s 
@@ -328,14 +330,14 @@ The physical model is of this denormalised database is a Star Schema with key-di
 
           ![image](https://user-images.githubusercontent.com/86786263/169455533-bcdaf314-be4f-4a94-b81b-5c36d6e10ccd.png)
 
-    Q2. First name, last name, and hire date for employees who were hired in 1986
+    Ques2. First name, last name, and hire date for employees who were hired in 1986
 
          SELECT first_name, last_name, hire_date
          FROM employeesorg
          WHERE hire_date LIKE '%1986';
 
 
-   Q3. List showing Manager of each department  with dept number, dept name, manager's emp number, last name and first name. 
+   Ques3. List showing Manager of each department  with dept number, dept name, manager's emp number, last name and first name. 
 
          SELECT d.dept_no, d.dept_name, dm.emp_no, e.last_name, e.first_name
          FROM departments d INNER JOIN dept_manager dm
@@ -343,7 +345,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
              ON e.emp_no = dm.emp_no;
 
 
-   Q4. List dept of each employee with emp number, last name, first name, dept name.
+   Ques4. List dept of each employee with emp number, last name, first name, dept name.
 
          SELECT e.emp_no, e.last_name, e.first_name, d.dept_name
          FROM employeesorg e INNER JOIN dept_emp de
@@ -351,7 +353,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
              ON de.dept_no = d.dept_no;
 
 
-   Q5. List of employees first name, last name, sex with first name 'Hercules' and last name begin with 'B'.
+   Ques5. List of employees first name, last name, sex with first name 'Hercules' and last name begin with 'B'.
 
          SELECT first_name, last_name, sex
          FROM employeesorg
@@ -359,7 +361,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
              last_name LIKE 'B%';
 
 
-   Q6. List of all employees in Sales departments with their emp number, last name, first name, dept name.
+   Ques6. List of all employees in Sales departments with their emp number, last name, first name, dept name.
 
          SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
          FROM departments d INNER JOIN dept_emp de
@@ -368,7 +370,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
          WHERE d.dept_name LIKE '%Sales%';
 
 
-   Q7. List of all employees in Sales and Development departments with their emp number, last name, first name, dept name.
+   Ques7. List of all employees in Sales and Development departments with their emp number, last name, first name, dept name.
 
          SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
          FROM departments d INNER JOIN dept_emp de
@@ -377,7 +379,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
          WHERE d.dept_name LIKE '%Sales%' or d.dept_name LIKE '%development%';
 
 
-   Q8. List employee count with same last name
+   Ques8. List employee count with same last name
 
          SELECT last_name, COUNT(last_name) as surname_count
          FROM employeesorg
@@ -385,7 +387,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
          ORDER BY COUNT(last_name) DESC;
 
 
-   Q9. Salary distribution using histogram
+   Ques9. Salary distribution using histogram
 
          SELECT bins, COUNT(*)
          FROM bins
@@ -394,7 +396,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
    ![image](https://user-images.githubusercontent.com/86786263/169456015-733935ee-b469-4b5a-8f53-49ca28a71d3d.png)
 
 
-   Q10.Average salary per designation using Bar graph
+   Ques10.Average salary per designation using Bar graph
 
          SELECT t.title, AVG(s.salary) as avg_salary
          FROM employeesorg e INNER JOIN salaries s 
@@ -404,7 +406,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
 
    ![image](https://user-images.githubusercontent.com/86786263/169456098-78812b7a-dc0f-46c6-853f-73cf3867a588.png)
 
-   Q11. Calculate employee tenure and tenure distribution among employees.
+   Ques11. Calculate employee tenure and tenure distribution among employees.
 
          SELECT COUNT(emp_no) AS emp_count,
              CASE    
@@ -421,7 +423,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
    ![image](https://user-images.githubusercontent.com/86786263/169456244-7e2e48bc-691b-4999-9169-78a0c6292a71.png)
 
 
-   Q12. Net expenditure for each dept
+   Ques12. Net expenditure for each dept
 
          SELECT d.dept_name, SUM(s.salary)
          FROM departments d LEFT JOIN dept_emp de 
@@ -431,7 +433,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
          GROUP BY d.dept_name;
 
 
-   Q13. Sex ratio for each department
+   Ques13. Sex ratio for each department
 
          SELECT d.dept_name, SUM(CASE
                              WHEN e.sex = 'M' THEN 1 ELSE 0 END) AS Male_Count, SUM(CASE
@@ -443,7 +445,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
              GROUP BY d.dept_name;
 
 
-   Q14. Highest paid employee first and last name
+   Ques14. Highest paid employee first and last name
 
          SELECT d.dept_name, e.first_name, e.last_name, s.salary
          FROM departments d LEFT JOIN dept_emp de 
@@ -454,7 +456,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
          LIMIT 1;
 
 
-   Q15. Number of employee at each designation
+   Ques15. Number of employee at each designation
 
          SELECT t.title, COUNT(*) AS total_employees
          FROM employeesorg e INNER JOIN titles t 
@@ -462,7 +464,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
          GROUP BY t.title;
 
 
-   Q16. Performance rating distribution
+   Ques16. Performance rating distribution
 
          SELECT e.last_performance_rating, d.dept_name, COUNT(*) AS total_emp
          FROM departments d LEFT JOIN dept_emp de 
@@ -471,9 +473,9 @@ The physical model is of this denormalised database is a Star Schema with key-di
          GROUP BY e.last_performance_rating, d.dept_name
          ORDER BY total_emp DESC;
 
-       3) Open Jupyter notebook and create a local Spark Session instance.
-       4) Use SparkSQL to perform EDA for the same business problems.
-       5) Perform proper visualisation.
+   3) Open Jupyter notebook and create a local Spark Session instance.
+   4) Use SparkSQL to perform EDA for the same business problems.
+   5) Perform proper visualisation.
 
          Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkSQL/Capstone1_SparkSQL.ipynb)
 
