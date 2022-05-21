@@ -330,7 +330,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
 
           ![image](https://user-images.githubusercontent.com/86786263/169455533-bcdaf314-be4f-4a94-b81b-5c36d6e10ccd.png)
 
-    Ques2. First name, last name, and hire date for employees who were hired in 1986
+   Ques2. First name, last name, and hire date for employees who were hired in 1986
 
          SELECT first_name, last_name, hire_date
          FROM employeesorg
