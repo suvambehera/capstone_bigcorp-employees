@@ -1,15 +1,15 @@
 # bigcorp-employees
 
 ## Project Objective
-Create a date engineering solution to a HR employee data by formulating a end-to-end pipeline utilising Big data and Machine Learning technolgy stacks to gain insights using exploratory data analysis and to build ML clasffication models.
+Create a date engineering solution to a HR employee data by formulating a end-to-end pipeline utilising Big Data and Machine Learning technology stacks to gain insights using Exploratory data analysis and to build ML clasffication models.
 
 
 ## Data
-The data acquired is from a major corporation's employees database over a period of 15 years. The data is spread across 6 .csv files with varying degree of cardinal relationship between them. The goal is extraction, transformation an loading of data to gain valuable insights as well as to predict the likeliood of employees tenure in the organisation.
+The data acquired is from a major corporation's employees database over a period of 15 years. The data is spread across 6 .csv files with varying degree of cardinal relationship between them. The goal is extraction, transformation and loading of data to gain valuable insights as well as to predict the likeliood of employees tenure in the organisation.
 
 
 ### Tables
-The physical model is of this denormalised database is a Star Schema with a key-dimension tables.
+The physical model is of this denormalised database is a Star Schema with key-dimension tables.
 - [employees.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735212/employees.csv) which has the data of former and current every employee.
 - [departments.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735210/departments.csv) which has the data about the various departments within the organisation.
 - [dept_manager.csv](https://github.com/suvambehera/capstone_bigcorp-employees/files/8735214/dept_manager.csv) about the manager and their working department.
@@ -27,31 +27,31 @@ The physical model is of this denormalised database is a Star Schema with a key-
 - Employees (employees.csv): \
    emp_no-Employee Id - Integer - Not Null \
    emp_titles_id-designation id-Not Null \
-   birth date-Date of Birth Date Time - Not Null. \
-   first name- First Name - Character Not Null \
-   last name - Last Name Character - Not Null \
+   birth_date-Date of Birth Date Time - Not Null. \
+   first_name- First Name - Character Not Null \
+   last_name - Last Name Character - Not Null \
    sex-Gender-Character-Not Null \
-   hire date - Employee Hire date-Date Time -Not Null \
-   no of projects-Number of projects worked on-Integer- Not Null \
-   Last performance rating-Last year performance rating - Character - Not Null \
+   hire_date - Employee Hire date-Date Time -Not Null \
+   no_of_projects-Number of projects worked on-Integer- Not Null \
+   Last_performance_rating-Last year performance rating - Character - Not Null \
    left-Employee left the organization - Boolean-Not Null \
-   Last date - Last date of employment (Exit Date) - Date Time
+   Last_date - Last date of employment (Exit Date) - Date Time
 
 - Salaries (salaries.csv): \
-   emp no- Employee id- Integer - Not Null Salary \
-   Employee's Salary-Integer - Not Null
+   emp_no- Employee id- Integer - Not Null Salary \
+   Salary-Integer - Not Null
 
 - Departments (departments.csv): \
-   dept no-Unique id for each department - character - Not Null \
+   dept_no-Unique id for each department - character - Not Null \
    dept_name-Department Name-Character - Not Null
 
 - Department Managers (dept_manager.csv): \
-   dept no - Unique id for each department-character - Not Null \
+   dept_no - Unique id for each department-character - Not Null \
    emp_no-Employee number (head of the department )- Integer - Not Null
 
 - Department Employees (dept_emp.csv): \
-   emp no-Employee id - Integer - Not Null \
-   dept no - Unique id for each department character - Not Null
+   emp_no-Employee id - Integer - Not Null \
+   dept_no - Unique id for each department character - Not Null
 
 ## Technology stack
 
@@ -121,7 +121,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
            emp_no int NOT NULL);     
        ```
     
-   3) Upload the data into the HDFS FTP
+   3) Upload the data into the HDFS local file system
        ```
           /home/anabig114211/capstonelv1_empdata 
        ```
@@ -162,7 +162,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
            --warehouse-dir=/user/anabig114211/hive/warehouse/jes --m 1 --driver com.mysql.jdbc.Driver 
          ```
          
-    3) In Linux shell, transfer the .avsc schema file to another specified HDFS directory.
+    3) From Linux local file system, transfer the .avsc schema file to a specified HDFS directory.
        ```
            <!-- check if all files were imported successfully from the Sqoop tranfer -->
            <!-- avsc schema files in linux home -->
@@ -190,7 +190,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
     
 3. Hive database and table creation
     1) Create a database and external table for the table data imported.
-    2) Data Ingestion - Load the data into external table using appropriate path and SerDes.
+    2) Data Ingestion - Load the data into 6 external tables using proper path and SerDes.
     
          ```
              --<!-- Hive table creation using the avro schema files -->
@@ -253,7 +253,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
             select * from salaries;
          ```
    
-    3) Create views from the tables for specified purposes.
+    3) Create views for specified purposes.
        ```
             CREATE VIEW employeesorg AS
                 SELECT emp_no,                                                      
@@ -317,7 +317,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
          
 4. Impala and SparkSQL EDA
     1) Invalidate Metadata to reload the fresh metadata for Impala query.
-    2) Do EDA on te business problem asked.
+    2) Do EDA for te business problem asked.
     
 
    Q1. A list of employee number, last name, first name, sex, and salary for each employee.
@@ -431,7 +431,7 @@ The physical model is of this denormalised database is a Star Schema with a key-
          GROUP BY d.dept_name;
 
 
-   Q13. Sex ratio each department
+   Q13. Sex ratio for each department
 
          SELECT d.dept_name, SUM(CASE
                              WHEN e.sex = 'M' THEN 1 ELSE 0 END) AS Male_Count, SUM(CASE
@@ -471,21 +471,21 @@ The physical model is of this denormalised database is a Star Schema with a key-
          GROUP BY e.last_performance_rating, d.dept_name
          ORDER BY total_emp DESC;
 
-       3) Open Jupyter notebook and create Spark Session instance.
-       4) Use SparkSQL to perform EDA of the same business problems.
+       3) Open Jupyter notebook and create a local Spark Session instance.
+       4) Use SparkSQL to perform EDA for the same business problems.
        5) Perform proper visualisation.
 
          Please refer to [SparkSQL EDA](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkSQL/Capstone1_SparkSQL.ipynb)
 
 5. SparkML Model building
-    a. Import all the required libraries in Jupyter Labs
-    b. Data preparation to clean out duplicate and null values.
-    c. Proper formatting of table fields.
-    d. Create categorical and continous features.
-    e. Do Encoding on the categorical data and transform the data.
-    f. Slit the dataset into train and test set.
-    g. Perform Logistic Regression and Random Forest Classifier.
-    h. Compare the result.
+    1) Import all the required libraries in Jupyter Labs
+    2) Data preparation to clean out duplicate and null values.
+    3) Proper formatting of table fields.
+    4) Create categorical and continous features.
+    5) Do Encoding on the categorical data and transform the data.
+    6) Slit the dataset into train and test set.
+    7) Perform Logistic Regression and Random Forest Classifier.
+    8) Compare the result.
     
          Please refer to [SparkML Model](https://github.com/suvambehera/capstone_bigcorp-employees/blob/main/SparkML/capstone1_SparkML.ipynb)
     
