@@ -121,7 +121,7 @@ The physical model is of this denormalised database is a Star Schema with key-di
            emp_no int NOT NULL);     
        ```
     
-   3) Upload the data into the HDFS local file system
+   3) Upload the data into the local file system
        ```
           /home/anabig114211/capstonelv1_empdata 
        ```
